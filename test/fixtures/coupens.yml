@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  discount: 1.5
+  coupen_code: MyString
+
+two:
+  discount: 1.5
+  coupen_code: MyString

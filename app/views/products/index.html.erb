@@ -1,0 +1,26 @@
+<h1>Products info</h1>
+<div class="row row-cols-1 row-cols-md-3">
+  <% @products&.each do |c| %>
+      <div class="col-md-2 p-2">
+        <div class="card h-100">
+          <%= image_tag (c.thumbnail(0)), class: "card-img-top"%>
+          <div class="card-body">
+            <h5 class="card-title"> Name:<%= c.name %><br> Brand: <%= c.brand %></h5>
+            <p class="card-text">serial Number: <%= c.serial_no %><br>$<%= c.price %></p>
+          </div>
+          <p>
+            <% if (policy(c).edit?) && (policy(c).destroy?) %>
+              <%= link_to 'Edit', edit_product_path(c.id) %>
+              <%= link_to 'Delete', [@user, c], method: :delete, data: { confirm: 'Are you sure?' } %>
+            <% end %>
+
+            <%= link_to 'Show ', product_path(c.id) %>
+            <%= render "cart_items/form", product: c, cart_item: @cart_item %>
+          </p>
+        </div>
+      </div>
+  <% end %>
+</div>
+<% if policy(@products).create? %>
+    <%=link_to "Create Product", new_product_path ,class: "btn btn-primary"%>
+<%end%>

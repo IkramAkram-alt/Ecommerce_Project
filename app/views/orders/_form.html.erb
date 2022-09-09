@@ -1,0 +1,6 @@
+<%= form_with(scope: :post,url: assign_copen_order_path(order),local: true) do |f| %>
+  <%= f.label :copen, "Add Copen Code For Discount",class: "form-group" %>
+  <%= f.text_field :copen ,class: "form-field"%>
+  <%= f.submit "Check Out",class: "btn btn-primary"%>
+<% end %>
+

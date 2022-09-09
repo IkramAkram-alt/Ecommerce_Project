@@ -1,0 +1,11 @@
+<% product.comments.reload.each do |comment|%>
+    <strong> <%= comment.body %></strong>
+    <small><%= comment.user.name %></small><br>
+    <% if policy(comment).edit? %>
+        <%= link_to 'Edit', edit_product_comment_path(comment.product.id, comment.id) %>
+    <%end%>
+
+    <% if policy(comment).destroy? %>
+        <%= link_to 'Delete', product_comment_path(comment.product.id, comment.id), method: :delete, data: { confirm: 'Are you sure?' } %><br>
+    <%end%>
+<%end%>

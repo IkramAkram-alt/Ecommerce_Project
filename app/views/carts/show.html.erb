@@ -1,0 +1,35 @@
+<%total = 0%>
+<div class = "container">
+  <div class = "row">
+    <div class = "col-lg-12 mx-md auto">
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Product Name</th>
+            <th scope="col">Product Quantity</th>
+            <th scope="col">Subtotal</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @cart_items.each do |item|%>
+          <tr>
+            <td><%= item.product.name %></td>
+            <td><%= item.quantity%></td>
+            <td><p>$<%= item.subtotal(item) %></p></td>
+            <td><%= render "cart_items/form", cart_item: item,product: item.product %></td>
+            <td><%= link_to "Delete",cart_item_path(item.id), class: "btn btn-primary",method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <%total+=item.subtotal(item)%>
+          </tr>
+        <% end %>
+          <tr>
+          <td> Total price: $<%=total%> </td>
+          </tr>
+        </tbody>
+      </table>
+      <%= link_to "Back", products_path, class: "btn btn-primary" %>
+      <%= link_to "Order", orders_path,class: "btn btn-primary",method: :post%>
+    </div>
+  </div>
+</div>
